@@ -1,4 +1,4 @@
-rm -rf libffmpeg.wasm libffmpeg.js
+rm -rf ./wasm/*.*
 export TOTAL_MEMORY=67108864
 export EXPORTED_FUNCTIONS="[ \
     '_initDecoder', \
@@ -15,7 +15,6 @@ export EXPORTED_FUNCTIONS="[ \
 
 echo "Running Emscripten..."
 emcc decoder.c dist/lib/libavformat.a dist/lib/libavcodec.a dist/lib/libavutil.a dist/lib/libswscale.a \
-    -O3 \
     -I "dist/include" \
     -s WASM=1 \
     -s TOTAL_MEMORY=${TOTAL_MEMORY} \
@@ -23,6 +22,7 @@ emcc decoder.c dist/lib/libavformat.a dist/lib/libavcodec.a dist/lib/libavutil.a
     -s EXTRA_EXPORTED_RUNTIME_METHODS="['addFunction']" \
     -s RESERVED_FUNCTION_POINTERS=14 \
     -s FORCE_FILESYSTEM=1 \
-    -o libffmpeg.js
+    -o ./wasm/libffmpeg.js
+    # -O3 \
 
 echo "Finished Build"

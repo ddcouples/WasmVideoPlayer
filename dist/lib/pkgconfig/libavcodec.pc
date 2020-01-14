@@ -1,4 +1,4 @@
-prefix=/mnt/h/work/open_source/ffmpeg/../WasmVideoPlayer/dist
+prefix=/mnt/e/github/ffmpeg-3.3.9/../WasmVideoPlayer/dist
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include

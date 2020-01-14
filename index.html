@@ -12,15 +12,6 @@
 
 <body>
     <div class="container" id="videoPlayer">
-        <div class="sideBar">
-            <span class="no-padding">
-                <img src="img/home.png" class="left" id="btnHome" title="Visit My Homepage" onclick="window.open('https://blog.csdn.net/sonysuqin')" />
-            </span>
-            <div id="protoDiv" >
-                <input type="radio" name ="protocol" value="http" checked>http
-                <input type="radio" name ="protocol" value="websocket">websocket
-            </div>
-        </div>
         <div class="canvasDiv">
             <div class="loadEffect" id="loading" style="display:none;">
                 <span></span>
@@ -72,13 +63,13 @@
 
         function playVideo() {
             //File url.
-            var videoFileUrl = null;
-            var proto = document.getElementsByName('protocol');
-            if (proto[1].checked) {
-                videoFileUrl = "wss://roblin.cn/wss/h265_high.mp4";
-            } else {
-                videoFileUrl = "video/h265_high.mp4";
-            }
+            var videoFileUrl = "video/b-frame.flv";
+            // var proto = document.getElementsByName('protocol');
+            // if (proto[1].checked) {
+            //     videoFileUrl = "wss://roblin.cn/wss/h265_high.mp4";
+            // } else {
+            //     videoFileUrl = "video/b-frame.flv";
+            // }
 
             var el = document.getElementById("btnPlayVideo");
             var currentState = self.player.getState();

@@ -5,7 +5,7 @@ self.Module = {
 };
 
 self.importScripts("common.js");
-self.importScripts("libffmpeg.js");
+self.importScripts("./wasm/libffmpeg.js");
 
 function Decoder() {
     this.logger             = new Logger("Decoder");
@@ -45,6 +45,7 @@ Decoder.prototype.uninitDecoder = function () {
 Decoder.prototype.openDecoder = function () {
     var paramCount = 7, paramSize = 4;
     var paramByteBuffer = Module._malloc(paramCount * paramSize);
+    
     var ret = Module._openDecoder(paramByteBuffer, paramCount, this.videoCallback, this.audioCallback, this.requestCallback);
     this.logger.logInfo("openDecoder return " + ret);
 
