@@ -4,3 +4,5 @@ ffmpeg -i ./h265-test-640.mp4 -c:a copy -vcodec hevc -r 25 -b:v 400k -bufsize 40
 ffmpeg -i ./h265-test-640.mp4 -c:a copy -vcodec hevc -r 25 -b:v 400k -bufsize 400k mock-h265-test-640.mp4
 ##### 将moov格式移到前面 ffmpeg v3.3.9 编译
 ffmpeg -i ./h265-test-640.mp4 -c:v copy -c:a copy -movflags faststart mock-h265-test-640.mp4
+
+## ffmpeg基础知识

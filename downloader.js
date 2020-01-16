@@ -36,16 +36,17 @@ Downloader.prototype.reportData = function (start, end, seq, data) {
     self.postMessage(objData, [objData.d]);
 };
 
-// Http implement.
+// Http implement. 此处只执行了一次
 Downloader.prototype.getFileInfoByHttp = function (url) {
     this.logger.logInfo("Getting file size " + url + ".");
     var size = 0;
     var status = 0;
     var reported = false;
+    var self = this;
+    // self.reportFileSize(Number.MAX_SAFE_INTEGER, 200);
 
     var xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
-    var self = this;
     xhr.onreadystatechange = () => {
         var len = xhr.getResponseHeader("Content-Length");
         if (len) {
@@ -58,6 +59,7 @@ Downloader.prototype.getFileInfoByHttp = function (url) {
 
         //Completed.
         if (!reported && ((size > 0 && status > 0) || xhr.readyState == 4)) {
+            console.log(size, status)
             self.reportFileSize(size, status);
             reported = true;
             xhr.abort();
