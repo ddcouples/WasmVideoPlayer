@@ -1586,7 +1586,7 @@ function isDataURI(filename) {
 
 
 
-var wasmBinaryFile = 'libffmpeg.wasm';
+var wasmBinaryFile = './wasm/libffmpeg.wasm';
 if (!isDataURI(wasmBinaryFile)) {
   wasmBinaryFile = locateFile(wasmBinaryFile);
 }

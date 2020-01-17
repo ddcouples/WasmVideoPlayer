@@ -449,7 +449,7 @@ Player.prototype.onFileData = function (data, start, end, seq) {
         d: data
     };
     this.decodeWorker.postMessage(objData, [objData.d]);
-
+    console.log(this.decoderState);
     switch (this.decoderState) {
         case decoderStateIdle:
             this.onFileDataUnderDecoderIdle();
@@ -780,6 +780,7 @@ Player.prototype.renderVideoFrame = function (data) {
     this.webglPlayer.renderFrame(data, this.videoWidth, this.videoHeight, this.yLength, this.uvLength);
 };
 
+// 分段下载视频数据
 Player.prototype.downloadOneChunk = function () {
     if (this.downloading) {
         return;
@@ -811,6 +812,7 @@ Player.prototype.downloadOneChunk = function () {
         q: this.downloadSeqNo,
         p: this.downloadProto
     };
+    // 进入downloader.js 中onmessage 执行downloadFile下载
     this.downloadWorker.postMessage(req);
     this.downloading = true;
 };
